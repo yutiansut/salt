@@ -18,7 +18,7 @@ import warnings
 # Import Salt Testing libs
 from tests.support.unit import TestCase, skipIf
 from tests.support.mock import patch, NO_MOCK, NO_MOCK_REASON
-from tests.support.paths import CODE_DIR
+from tests.support.runtests import RUNTIME_VARS
 
 # Import Salt libs
 import salt.modules.cmdmod
@@ -109,7 +109,7 @@ class VersionTestCase(TestCase):
         query = 'salt.utils.versions.warn_until('
         names = salt.version.SaltStackVersion.NAMES
 
-        cmd = 'grep -lr {} -A 1 {}'.format(query, os.path.join(CODE_DIR, 'salt'))
+        cmd = 'grep -lr {} -A 1 {}'.format(query, os.path.join(RUNTIME_VARS.CODE_DIR, 'salt'))
 
         grep_call = salt.modules.cmdmod.run_stdout(cmd=cmd).split(os.linesep)
 
